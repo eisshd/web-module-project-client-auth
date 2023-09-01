@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Login from './components/Login';
 import AddFriend from './components/AddFriend';
 import FriendsList from './components/FriendsList';
-
+import PrivateRoute from './components/PrivateRoute';
+import Logout from './components/PrivateRoute';
 
 function App() {
   return (
@@ -14,15 +15,16 @@ function App() {
       <header>
         <h2>Friends</h2>
         <Link className='links' to='login'>Login</Link>
-        <Link className='links' to='friendslist'>Friends List</Link>
-        <Link className='links' to='friendslist/add'>Add Friend</Link>
-        <Link className='links' to='friendslist'>Logout</Link>
+        <Link className='links' to='/friendslist'>Friends List</Link>
+        <Link className='links' to='/friendslist/add'>Add Friend</Link>
+        <Link className='links' to='/logout'>Logout</Link>
       </header>
       <Routes>
         <Route exact path='/' element={<Login/>}/>
         <Route exact path='/login' element={<Login/>}/>
-        <Route exact path='/friendslist' element={<FriendsList />}/>
-        <Route exact path='/friendslist/add' element={<AddFriend />}/>
+        <PrivateRoute exact path='/friendslist' component={FriendsList}/>
+        <PrivateRoute exact path='/friendslist/add' component={AddFriend}/>
+        <PrivateRoute exact path='/logout' component={Logout}/>
       </Routes>
       </div>
   );

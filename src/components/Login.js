@@ -19,7 +19,7 @@ const Login = () => {
         e.preventDefault()
         axios.post('http://localhost:3000/api/login', login)
              .then(res => {
-                localStorage.setItem('token', res.payload)
+                localStorage.setItem('token', res.data.payload)
                 push('/friendslist')
              })
     }
